@@ -7,13 +7,13 @@ Hinge Loss: $L(y,z) = max(0, 1-yz)$ \\
 Perceptron Loss: $L(y,z) = max(0, -yz)$ \\
 Logistic loss: $L(y,z) = log(1 + exp(-yz))$ \\
 Square loss: $L(y,z) = \tfrac{1}{2}(1-yz)^2$ \\
-Exponential loss: $L(y,z) = exp(-yz)$ \\
+Exponential loss: $L(y,z) = exp(-\beta yz)$ \\
 Binomial deviance: $L(y,z) = 1 + exp(-2yz)$ \\
 0/1 Loss: $L(y,z) = \mathbb{I}\{sign(z)\neq y\}$ \\
 
 \subsection*{Perceptron} 
 Gradient descent: $a(k+1) = a(k) - \eta(k)\nabla J(a(k))$ \\
-$J(a)\approx J(a(k))+\nabla J^T(a-a(k)) + \tfrac{1}{2}(a-a(k))^T H (a-a(k))$, $H{=}\frac{\partial^2 J}{\partial a_i \partial a_j}$ \\
+$J(a)\approx J(a(k))+\nabla J^T(a-a(k)) + \tfrac{1}{2}(a-a(k))^T H (a-a(k))$, $H{=}\frac{\partial^2 J}{\partial a_i \partial a_j}$, where $J$ is the negative log likelihood and $a$ are the weights.\\
 $2^{nd}$ order algorithm: $\eta_{opt} = \frac{\norm{\nabla J}^2}{\nabla J^T H \nabla J}$ \\
 Newton's rule: $a(k+1){=}a(k){-}H^{{-}1}\nabla J$\\
 Perceptron criteria: $J_p(a)=\sum_{\widetilde{x}\in\widetilde{\mathcal{X}}^{mc}} (-a^T \widetilde{x})$ \\
@@ -34,3 +34,7 @@ where $\beta^{2} = max_{i}  \left \| \tilde x_{i \in \tilde X^{mc} } \right \| ^
 %$C_+ = \mathbb{E}_y[C(y,+1)|x] = P(y=+1|x) \cdot 0 + (P(y=-1)|x) \cdot %c_{FP}$\\
 %$C_- = \mathbb{E}_y[C(y,-1)|x] = P(y=+1|x) \cdot c_{FN} + P(y=-1|x) \cdot %0$\\
 %Predict +1 if $C_+ \leq C_-$
+
+\subsection*{Metrics: ROC(FPR/TPR), PRC(Recall/Precision)}
+Accuracy: $\frac{TP+TN}{TP+TN+FP+FN}$, Precision: $\frac{TP}{TP+FP}$\\ Recall/TPR: $\frac{TP}{TP+FN}$, F1 score: $\frac{2TP}{2TP+FP+FN}$\\
+Balanced accuracy: $\frac{1}{n}\sum_i^n TPR_i$

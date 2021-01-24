@@ -1,0 +1,25 @@
+% -- PAC LEARNING
+\section{PAC Learning}
+
+Generalization error (not computable by learner): $\mathcal{R}(\hat{c}_n^*) = P\{ \hat{c}_n^*(X)\neq y \}$ \\
+Empirical error: $\hat{\mathcal{R}}_n(c) = \tfrac{1}{n}\sum_{i=1}^n \mathbb{I}_{\{\hat c(x_i)\neq y\}}$ \\
+One can show: $\E_{X,X_1,...,X_n}[\hat{\mathcal{R}}_n(\hat c(X))]=\mathcal{R}(\hat c)$
+\textbf{Concept class $\mathcal{C}$}=subset $c$ of instance space $\mathcal{X}$.
+\textbf{Hypothesis class $\mathcal{H}$}=set of concepts $\hat c$ used to learn target concept. No additional prior knowledge on $\mathcal{X}$ available.\\
+\textbf{General PAC:} A learning algorithm $\mathcal{A}$ can learn a concept class $\mathcal{C}$ from $\mathcal{H}$ if there is a polynomial function $poly(\cdot,\cdot,\cdot)$ such that (1) for any distribution $\mathcal{D}$ on $\mathcal{X} \times \{0,1\}$ and (2) for any $0<\epsilon<1/2$ and $0<\delta<1/2$, if $\mathcal{A}$ receives as input a sample $\mathcal{Z}$ of size $n\geq poly(1/\epsilon,1/\delta,dim(\mathcal{X}))$, then $\mathcal{A}$ outputs $\hat c \in \mathcal{H}$ such that: $\mathrm{P}_{\mathcal{Z}\sim\mathcal{D}^n}(\mathcal{R}(\hat c)-\inf_{c\in\mathcal{C}}\mathcal{R}(c)\leq\epsilon)\geq 1-\delta$\\
+\textbf{Efficient PAC learning}: If $\mathcal{A}$ runs in time polynomial in $1/\epsilon$ and $1/\delta$, we say that $\mathcal{C}$ is efficiently PAC learnable ($\epsilon$=error parameter, $\delta$=confidence value).\\
+\textbf{VC ineq.} (requires uniform convergence): $\mathcal{R}(\hat c_n^*)-\inf_{c\in \mathcal{C}} \mathcal{R}(c) \leq 2\sup_{c\in \mathcal{C}}|\hat{\mathcal{R}}_n(c) - \mathcal{R}(c)|$ and
+$\mathrm{P}\{\mathcal{R}(\hat c_n^*)-\inf_{c\in \mathcal{C}} \mathcal{R}(c)>\epsilon\} \leq \mathrm{P}\{sup_{c\in \mathcal{C}}|\hat{\mathcal{R}}_n(c) - \mathcal{R}(c)|>\epsilon/2\}$\\
+If $\mathcal{C}$ is finite: $\leq 2|\mathcal{C}| exp(-2n\epsilon ^2)$\\
+Uncountable $\mathcal{H}$: $\leq 9n^{VC_\mathcal{C}}\exp(-n\epsilon^2/32)$
+
+
+
+% Extra notes from forked repo:
+% Markov ineq: $P\{X\geq\epsilon\} \leq \tfrac{\mathbb{E}[X]}{\epsilon}$ (for nonneg. X) \\
+% Boole's inequality: $P(\bigcup_i A_i) \leq \sum_i P(A_i)$ \\
+% Hoeffding's lemma: $\mathbb{E}[e^{sX}] \leq exp(\tfrac{1}{8}s^2(b-a)^2)$ where $\mathbb{E}[X]=0$, $P(X\in[a,b])=1$ \\
+% Hoeffding's: $P\{S_n {-} \mathbb{E}[S_n] {\geq} t\} {\leq} exp({-} \frac{2t^2}{\sum_i (b_i - a_i)^2})$ \\
+% Normalized: $P\{\widetilde{S}_n {-} \mathbb{E}[\widetilde{S}_n] {\geq} \epsilon\} {\leq} exp({-} \frac{2n^2 \epsilon ^2}{\sum_i (b_i {-} a_i)^2})$ \\
+% {\small Error bound: $P\{ \sup\limits_{c\in\mathcal{C}}|\hat{\mathcal{R}}_n(c) - \mathcal{R}(c)| > \epsilon \} \leq 2|\mathcal{C}| exp(-2n\epsilon ^2)$} \\
+% The $\mathcal{VC}$ dimension of a model $f$ is the maximum number of points that can be arranged so that $f$ shatters them.

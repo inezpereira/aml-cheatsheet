@@ -2,8 +2,8 @@
 
 Taylor: $f(a)+\tfrac{f'(a)}{1!}(x-a) + \tfrac{f''(a)}{2!}(x-a)^2 + ...$ \\
 General p-norm: $\norm{ x }_p = (\sum_{i=1}^n |x_i|^p)^{1/p}$\\
-
-k-means objective: $\underset{\mathbf{S}} {\operatorname{arg\,min}}  \sum_{i=1}^{k} \sum_{\mathbf x \in S_i} \left\| \mathbf x - \boldsymbol\mu_i \right\|^2$
+Entropy: $H(X)=\E_X[-\log P(X)]$
+KL divergence: $D_\text{KL}(P \parallel Q) = \int_{x\in\mathcal{X}} P(x) \log\left(\frac{P(x)}{Q(x)}\right)$
 
 \subsection*{Probability / Statistics}
 Gaussian:
@@ -11,7 +11,8 @@ $f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{- \frac{1}{2} \frac{(x-\mu)^2}{\sigma^
 $f(x) = \frac{1}{\sqrt{(2\pi)^d\det\Sigma}} e^{- \frac{1}{2} (x-\mu)^T \Sigma^{-1} (x-\mu)}, \mathcal{N}(x|\mu, \Sigma)$\\
 $\ln(p(x|\mu, \Sigma)) {=} {-}\tfrac{d}{2}\ln(2\pi) {-} \tfrac{\ln|\Sigma|}{2} {-} \tfrac{1}{2}(x{-}\mu)^T\Sigma(x{-}\mu)$ \\
 $X {\sim} \mathcal{N}(\mu,\Sigma)$, $Y{=}A{+}BX \Rightarrow Y{\sim}\mathcal{N}(A{+}B\mu,B\Sigma B^T)$\\
-Binomial: $f(k,n,p) {=} Pr(X=k) {=} \binom nk p^k (1{-}p)^{n{-}k}$
+Binomial: $f(k,n,p) {=} Pr(X=k) {=} \binom nk p^k (1{-}p)^{n{-}k}$\\
+Beta: $p(x|a,b)=\frac{1}{B(a,b)}\cdot x^{a-1}(1-x)^{b-1}$, where: $a,b>0$ and $B(a,b)=\frac{\Gamma (a)\Gamma(b)}{\Gamma (a+b)}$, with: $\Gamma(a)=\int_0^\infty e^{-x}x^{a-1}dx$
 % Condition number: $\kappa(A)=\frac{\sigma_{max}(A)}{\sigma_{min}(A)}$ \\
 
 \subsection*{Moments}

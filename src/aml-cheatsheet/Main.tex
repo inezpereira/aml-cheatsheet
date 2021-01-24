@@ -18,6 +18,8 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{soul} % for highlighting
+\usepackage{amsmath} % for cases in equations
+\usepackage{mathtools} % for underbrace
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -95,10 +97,11 @@ leftmargin=0mm,rightmargin=0mm,skipbelow=0mm,skipabove=0mm,
 %	\input{8Unsupervised.tex}
 	\input{9MixtureModel.tex}
 %	\input{10TimeSeries.tex}
-	\input{10NeuralNet.tex}
+\newpage
+    \input{src/aml-cheatsheet/11NeuralNet}
+    \input{src/aml-cheatsheet/12ModelSelection}
+    \input{src/aml-cheatsheet/12Clustering}
 	\input{src/aml-cheatsheet/13Non-parametricBayes}
-	
-	\newpage
 	\input{src/aml-cheatsheet/14PAC}
 
 

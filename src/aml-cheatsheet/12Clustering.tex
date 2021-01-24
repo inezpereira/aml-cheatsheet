@@ -1,0 +1,59 @@
+\section{Clustering}
+
+\textbf{k-means objective}: $\underset{\mathbf{S}} {\operatorname{arg\,min}}  \sum_{i=1}^{k} \sum_{\mathbf x \in S_i} \left\| \mathbf x - \boldsymbol\mu_i \right\|^2$
+
+\textbf{Gaussian mixture model}: get $\theta$ such that\\
+$\argp(\mathcal{X}|\pi_{1,...,_k},\theta_{1,...k})=\prod_{x\in\mathcal{X}}\sum_{c\leq k}\pi_c p(x|\theta_c)$\\
+
+% Log-Likelihood: $L(\mathcal{X} | \pi, \theta) = \sum_{x\in \mathcal{X}}
+% \log \sum_{c \leq k} \pi_c p(x|\theta_c)$
+
+\textbf{EM algorithm for Gaussian Mixture}:
+
+\begin{algorithmic}[1]
+	\While{not converged}
+	\State \textbf{E-Step}: Calculate\\
+        $Q(\theta;\theta^{j})=\E_{\mathcal{X}_L}[L(\mathcal{X},\mathcal{X}_L|\theta)|\mathcal{X},\theta^{(j)}])$
+        $=\E_{\mathcal{X}_L}[\sum_{x\in\mathcal{X}}\sum_{c=1}^k M_{xc}\log(\pi_c P(x|\theta_c))|\mathcal{X},\theta_c]$ 
+        $=\sum_{x\in\mathcal{X}}\sum_{c=1}^k\underbrace{\E_{\mathcal{X}_L}[M_{xc}|\mathcal{X},\theta_c]}_{\gamma_{xc}}\log(\pi_c P(x|\theta_c))$
+        ($L(\mathcal{X},\mathcal{X}_L|\theta)$ log likelihood, $M_{xc}$ latent indicator variable, $\gamma_{xc}$ posterior estimate of mode assignments)\\
+        Therefore: $\gamma_{xc}=\frac{P(x|c,\theta^{(j)})P(c|\theta^{(j)}))}{P(x|\theta^{(j)})}$
+	\State \textbf{M-Step}: $\theta^{(j+1)}\in \argmax_\theta Q(\theta; \theta^{(j)})$\\
+	$\pi_c=\frac{1}{|\mathcal{X}|}\sum_{x\in\mathcal{X}}\gamma_{xc}$\\
+	$\mu_c=\frac{\sum_{x\in\mathcal{X}}\gamma_{xc}X}{\sum_{x\in\mathcal{X}}\gamma_{xc}}$\\
+	$\sigma^2_c=\frac{\sum_{x\in\mathcal{X}}\gamma_{xc}(x-\mu_c)^2)}{\sum_{x\in\mathcal{C}}\gamma_{xc}}$
+	\EndWhile
+\end{algorithmic}
+
+% \subsection*{Expectation Maximization}
+% $L(\X,M|\theta) = \sum_{x \in \X} \sum_{c=1}^k M_{xc} \log(\pi_c P(x|\theta_c)$ \\
+% $Q(\theta; \theta^{(j)}) = \E_{M}[L(\X,M|\theta)| \X, \theta^{(j)}]$, M latent variable
+
+
+% $M_{xc} = 1$ if cluster $c$ has generated $x$, else $M_{xc} = 0$
+% $\\ \E_M[M_{xc}|\X, \theta^{(j)}] = P(M_{xc}=1) = P(c | x, \theta^{(j)}) = 
+% \frac{P(x|c,\theta^{(j)}) P(c|\theta^{(j)})}{P(x|\theta^{(j)})}
+% = \frac{\pi_c P(x|c,\theta^{(j)})}{\sum_{c=1}^K \pi_c P(x|c,\theta^{(j)})} 
+% =: \gamma_{xc}$
+% \begin{algorithmic}[1]
+% 	\While{not converged}
+% 	\State E-Step:
+% 		\tab Compute $\gamma_{xc}$ for all $x, c$
+% 		\tab Compute $m_c := \sum_x \gamma_{xc}$ for all $c$
+% 	\State M-Step: max $Q(\theta; \theta^{(j)}) \hspace{5mm} s.t. \sum_c \pi_c = 1$
+%     	\vspace{-3mm}
+%     	\addtolength{\jot}{-3mm}
+% 		\begin{align*}
+% 			\mu_c^{(j+1)} &= \tfrac{\sum_{x \in \mathcal{X}} \gamma_{xc} x}{m_c} \hskip 15pt  
+% 			\pi_c^{(j+1)} = \tfrac{1}{|\mathcal{X}|} m_c \\
+% 			\Sigma_c^{(j+1)} &= \tfrac{\sum_{x \in \mathcal{X}} \gamma_{xc}(x-\mu_c)(x-\mu_c)^T}
+% 				{m_c} 
+% 		\end{align*}
+%         \vspace{-6mm}
+% 	\EndWhile
+% \end{algorithmic}
+% \vspace{-6mm}
+% \paragraph{Lagrangian with fixed $\gamma_{xc}$} \mbox{}\\
+% $L = \sum_x \sum_c \gamma_{xc} \log(\pi_c P(x|c,\theta_c)) - 
+% \lambda(\sum_c \pi_c - 1)$\\
+% For GMM: $P(x|c,\theta^{(j)}) = \mathcal{N}(x | \mu_c, \Sigma_c)$

@@ -1,0 +1,18 @@
+\section{Model selection}
+Selecting from models $p^{(1)}, \ldots, p^{(k)}$
+with training data $X$ and validation data $X'$.
+Denote
+$(A) = \E_{\theta \mid X} [
+    -\log p^{(i)} (\theta \mid X')
+]$
+and
+$(B) = \E_{\theta \mid X} [p^{(i)}(\theta \mid X')]$
+(\textbf{posterior agreement}).
+
+Standard model selection picks $\argmin_{i} (A)$,
+Buhmann advocates $\argmin_{i} (B)$.
+\textbf{Sensitivity analysis}: letting $X = \bar{X} + \Delta$
+and $X' = \bar{X} - \Delta$ (small $\Delta$),
+$(A)$ has linear dependence on $\Delta$.
+$(B)$ only has quadratic.
+Also $(B)$ defines a kernel $k(X, X')$ and: $\min_i (A) \geq -\max_i \log \big( (B) \big)$

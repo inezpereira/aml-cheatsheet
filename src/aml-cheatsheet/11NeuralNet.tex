@@ -8,7 +8,7 @@ For each unit $j$ on hidden layer $l=\{L-1,..,1\}$:\\
 - Error signal: $\delta_j = \phi'(z_j) \sum_{i\in Layer_{l+1}} w_{i,j}\delta_i$\\
 - For each unit $i$ on layer $l-1$: $\frac{\partial}{\partial w_{j,i}} = \delta_j v_i$
 
-\textbf{VAE}: encoder gives posterior, decoder likelihood. Prior distributions over $\mathcal{Z}$ are allowed. Requirements for good representation:\\
+\textbf{VAE}: define prior over $\mathcal{Z}$, likelihood (decoder) and approx. posterior (encoder). Requirements for good representation:\\
 \begin{inparaitem}[\textbullet]
     \item \textbf{informative}: given $\mathcal{Z}$, should be easy to guess $\mathcal{X}$). Encoder function maximizes mutual information: $\theta^* = \argmax_\theta I(\mathcal{X};\mathcal{Z})=\argmax_\theta \E_{\mathcal{X},\mathcal{Z}}[\log\frac{P(\mathcal{X,\mathcal{Z}})}{P(\mathcal{X})P(\mathcal{Z})}]\\
     \approx \argmax_\theta \sum_{i\leq n} \E_{\mathcal{Z}|x_i}[\log P(x_i|\mathcal{Z})]$\\

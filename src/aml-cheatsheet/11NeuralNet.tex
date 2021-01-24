@@ -1,12 +1,39 @@
 \section{Neural Network}
-\subsection*{Backpropagation}
-For each unit $j$ on the output layer:\\
-- Compute error signal: $\delta_j = \ell_j'(f_j)$\\
-- For each unit $i$ on layer $L$: $\frac{\partial}{\partial w_{j,i}} = \delta_j v_i$
 
-For each unit $j$ on hidden layer $l=\{L-1,..,1\}$:\\
-- Error signal: $\delta_j = \phi'(z_j) \sum_{i\in Layer_{l+1}} w_{i,j}\delta_i$\\
-- For each unit $i$ on layer $l-1$: $\frac{\partial}{\partial w_{j,i}} = \delta_j v_i$
+% \textbf{Backpropagation/chain rule}:
+% Denote by $\frac{\partial F}{\partial \boldsymbol{w}}$ the Jacobian of $F$:
+% $\Big( \frac{\partial F}{\partial \boldsymbol{w}} \Big)_{ij}
+% =
+% \frac{\partial F_i}{\partial \boldsymbol{w}_j}$.
+% Letting $\boldsymbol{w} = (x,y,z)$, $F(x, y) = \alpha$ and $M = G(z, \alpha)$:
+
+% $$
+% \frac{\partial M}{\partial y} \bigg{|}_{\boldsymbol{w}} =
+% \frac{\partial G}{\partial \alpha} \bigg{|}_{\alpha, z}
+% \frac{\partial F}{\partial y} \bigg{|}_{x, y}
+% $$
+
+\textbf{Sigmoid}:
+$\sigma(x) = \frac{1}{1+\exp(-x)} = \frac{\exp(x)}{\exp(x) + 1}$;
+$\sigma(x)' = \sigma(x)(1-\sigma(x)) = \sigma(x)\sigma(-x)$
+
+\textbf{Softmax}: $y_i=\frac{\exp(\beta z_i)}{\sum_{j\leq L}\exp(\beta z_j)}$
+
+\textbf{SGD with Robbins--Monro Algorithm}:
+Given $f \colon \R^m \times \R^n \rightarrow \R$, $\b{Z}$ random variable over $\R^m$,
+compute $\b{\theta}^*$ s.t.\ $\E_{\b{Z}}[f(\b{Z}, \b{\theta})] = 0$.
+Iteratively sample $\b{z}^{(k)} \sim \b{Z}$
+and set $\b{\theta}^{(k)} \leftarrow \b{\theta}^{(k-1)} - \eta(k) f(\b{z}_k, \b{\theta}^{(k-1)})$.
+
+For SGD, $f(\b{z}, \b{\theta}) = \nabla_{\b{\theta}} \mathcal{L}(y, \operatorname{NN}_{\b{\theta}}(\b{x}))$.
+
+Thm: R--M (and thus SGD) converges if
+$\eta(k) \geq 0$,
+$\sum_{k=1}^\infty \eta(k) = \infty$,
+$\sum_{k=1}^\infty \eta^2(k) < \infty$
+and some regularity conditions on $\E_{\b{Z}}[f(\b{z}, \b{\theta})]$ hold.\\
+
+\textbf{Regularization with NN}: \textbf{weight decay} (small weights decay to zero, large weights are shrunk with constant penalty), \textbf{dropout}, \textbf{optimal brain damage/surgeon} (connections that strongly fluctuate are eliminated).
 
 \textbf{VAE}: define prior over $\mathcal{Z}$, likelihood (decoder) and approx. posterior (encoder). Requirements for good representation:\\
 \begin{inparaitem}[\textbullet]
@@ -31,7 +58,7 @@ $
     \big]
     - D_{KL} \big(
         q_\phi(\cdot \mid x_i)\ ||\ p(\cdot)
-    \big)}_\text{ELBO = Infomax - Regularization term}
+    \big)}_\text{ELBO = Infomax - Regularization term}\\
     + D_{KL} \big(
         q_\phi(\cdot \mid x_i)\ ||\ p_\theta(\cdot \mid x_i)
     \big)

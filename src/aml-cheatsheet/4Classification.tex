@@ -11,6 +11,12 @@ Exponential loss: $L(y,z) = exp(-\beta yz)$ \\
 Binomial deviance: $L(y,z) = 1 + exp(-2yz)$ \\
 0/1 Loss: $L(y,z) = \mathbb{I}\{sign(z)\neq y\}$ \\
 
+\hl{Possibly repeated:} \textbf{Cross-entropy (logistic) loss}, $y \in \set{0, 1}$: $-(y\log(\hat{y}) + (1-y) \log(1-\hat{y}))$
+
+\textbf{Hinge loss}, $y \in \set{-1, 1}$: $\max(0, 1 - y \hat{y})$
+
+\textbf{Exponential loss}, $y \in \set{-1, 1}$: $e^{-y\hat{y}}$
+
 \subsection*{Perceptron} 
 Gradient descent: $a(k+1) = a(k) - \eta(k)\nabla J(a(k))$ \\
 $J(a)\approx J(a(k))+\nabla J^T(a-a(k)) + \tfrac{1}{2}(a-a(k))^T H (a-a(k))$, $H{=}\frac{\partial^2 J}{\partial a_i \partial a_j}$, where $J$ is the negative log likelihood and $a$ are the weights.\\

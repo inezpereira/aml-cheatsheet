@@ -12,15 +12,12 @@
 \subsection*{Gaussian Process}
     % $[y_1, y_2, ...]^T\!=\!X\beta\!+\!\epsilon \sim \mathcal{N}(y|0,\underbrace{X \Lambda^{-1} X^T}_\text{can kernelize}+ \sigma^2 I) $
     $y \sim \mathcal{N}(y | m(X), K(X,X) + \sigma^2 I) = P(y|X,\Theta)$ 
-    
     %Joint dist.: {\footnotesize $p([y, y_{n+1}] | x_{n+1}, X, \sigma) 
     %\sim \mathcal{N}([y, y_{n+1}]|, K_{n+1} + \sigma^2I)$}
-                        
     $$\left[\begin{smallmatrix} y \\y_{n+1}\end{smallmatrix}\right] \sim \mathcal{N}\left(\left[\begin{smallmatrix} y \\y_{n+1}\end{smallmatrix}\right]|[\begin{smallmatrix} m(X) \\m(x_{n+1})\end{smallmatrix}], [\begin{smallmatrix} C_n & k \\ k^T & c\end{smallmatrix}]\right)$$
-    	
     $p(y_{n+1}|x_{n+1}, X, y)) = \mathcal{N}(y_{n+1} | \mu_{n+1}, \sigma^2_{n+1})$	\\
     $\mu_{n+1} = m(x_{n+1})+k^T C^{-1}_n (y\!-\!m(X))$ \\
-    $\sigma^2_{n+1} = c - k^T C^{-1}_n k$, where $C_n = K(X,X) + \sigma^2 I$, $c = k(x_{n+1},x_{n+1})\!+\!\sigma^2$, $k = k(x_{n+1}, X)$ \\
+    $\sigma^2_{n+1} = c - k^T C^{-1}_n k$, where $C_n = K(X,X) + \sigma^2 I$, $c = k(x_{n+1},x_{n+1})\!+\!\sigma^2$, $k = k(x_{n+1}, X)$
 
 \subsection*{Kernels}
 

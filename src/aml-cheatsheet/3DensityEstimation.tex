@@ -4,9 +4,8 @@
 
 \textbf{Bayesian}: Define prior $P(\theta)$,
 define likelihood $P(y_{1 \ldots n} \mid \theta)$,
-compute posterior $P(\theta \mid y_{1 \ldots n})$
-(Bayes' Rule, computing $P(data) = \sum_{\theta} P(data \mid \theta) P(\theta)$).
-
+compute posterior $P(\theta \mid y_{1 \ldots n})$.
+% (Bayes' Rule, computing $P(data) = \sum_{\theta} P(data \mid \theta) P(\theta)$).
 \textbf{Frequentist} (MLE):
 Define a parametric model $\theta$ (e.g. $\mathcal{N}(\theta, 1)$),
 compute likelihood of data
@@ -24,19 +23,29 @@ $\hat{\theta}$ has smallest variance among all consistent estimators (for large 
 % $\hat{\theta}_{MAP} := \argmax_\theta \left \{ \sum_{i=1}^n log(p(x_i | \theta) + log(p(\theta)) \right\}$
 (Bias: $\text{bias}(\hat{\theta}) = \E[\hat{\theta}]-\theta$ = 0 if unbiased)
 
-\textbf{Stein estimator}: $\hat{\theta}_{JS}$ better than $\hat{\theta}_{MLE}$ for finite samples, i.e. $\E[(\hat{\theta}_{JS}-\theta_0)^2]\leq \E[(\hat{\theta}_{MLE}-\theta_0)^2]$ where $\hat{\theta}_{JS}=\big(1-\frac{(d-2)\sigma^2}{||y||^2}\big)y, d\geq 3$. This shows that there exist biased estimators that are better in the least squares sense then any u-estimator.\\
+\textbf{Stein estimator}: $\hat{\theta}_{JS}$ better than $\hat{\theta}_{MLE}$ for finite samples, i.e. $\E[(\hat{\theta}_{JS}-\theta_0)^2]\leq \E[(\hat{\theta}_{MLE}-\theta_0)^2]$ where $\hat{\theta}_{JS}=\big(1-\frac{(d-2)\sigma^2}{||y||^2}\big)y, d\geq 3$. This shows: there exist b-estimators that are better in the least squares sense then any u-estimator.
 
 \subsection*{Rao-Cramer}
 $\Lambda = \frac{\partial \log \mathbb{P}(x|\theta )}{\partial \theta}=\frac{\partial \log \mathbb{P}(x_1,...x_n|\theta )}{\partial \theta}$ (score function), $\E[\Lambda ]=0$,
 Fisher information: $I_n= \mathbb{V}[\Lambda]$ \\
 \textbf{Rao Cramer bound}: $\E[(\hat{\theta}-\theta_0)^2]\geq \frac{1}{I_n(\theta_0)}$\\
 \textbf{General Rao-Cramer bound (biased estimators)}:
-$\E_{X|\theta}[(\hat \theta -\theta )^{2}] \geq \frac{[ 1+ \partial (b_{\hat \theta})\partial \theta]^{2}}{\E_{X|\theta}[\Lambda ^{2}]} + b_{\hat \theta}^{2}$ If bias is zero, we recover the previous bound.\\
+$\E_{X|\theta}[(\hat \theta -\theta )^{2}] \geq \frac{[ 1+ \partial (b_{\hat \theta})\partial \theta]^{2}}{\E_{X|\theta}[\Lambda ^{2}]} + b_{\hat \theta}^{2}$ If bias is zero, we recover the previous bound.
 
 
 % Biased estimators: $var(\hat{\theta}) \geq \frac{[1 + b^{\prime}(\theta)]^2}{I(\theta)}$ \\
 % Efficiency: $e(\hat{\theta}) = \frac{I(\theta)^{-1}}{var(\hat{\theta})} \leq 1$ \\
 
+% \textbf{Maximum likelihood estimator}:
+% Consistent,
+% possibly biased,
+% asymptotically normal ($\sqrt{n}(\theta_{ML} - \theta)$ converges to $\mathcal{N}$),
+% asymptotically efficient (minimizes $\E[(\theta_{ML} - \theta)^2]$ (*) asymptotically).
+% But not necessarily efficient for finite samples
+% (e.g.\ Stein estimator of $\mathcal{N}(\theta, \sigma^2 \b{I})$ for $d\geq 3$ is better).
+
+% \textbf{Rao--Cramer bound}: $(*) \geq \frac{1}{I_n(\theta)}$,
+% where $I_n(\theta)$ is Fisher information.
 
 
 

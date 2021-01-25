@@ -4,8 +4,8 @@
 Generalization error (not computable by learner): $\mathcal{R}(\hat{c}_n^*) = P\{ \hat{c}_n^*(X)\neq y \}$ \\
 Empirical error: $\hat{\mathcal{R}}_n(c) = \tfrac{1}{n}\sum_{i=1}^n \mathbb{I}_{\{\hat c(x_i)\neq y\}}$ \\
 One can show: $\E_{X,X_1,...,X_n}[\hat{\mathcal{R}}_n(\hat c(X))]=\mathcal{R}(\hat c)$
-\textbf{Concept class $\mathcal{C}$}=subset $c$ of instance space $\mathcal{X}$.
-\textbf{Hypothesis class $\mathcal{H}$}=set of concepts $\hat c$ used to learn target concept. No additional prior knowledge on $\mathcal{X}$ available.\\
+% \textbf{Concept class $\mathcal{C}$}=subset $c$ of instance space $\mathcal{X}$.
+% \textbf{Hypothesis class $\mathcal{H}$}=set of concepts $\hat c$ used to learn target concept. No additional prior knowledge on $\mathcal{X}$ available.\\
 \textbf{General PAC:} A learning algorithm $\mathcal{A}$ can learn a concept class $\mathcal{C}$ from $\mathcal{H}$ if there is a polynomial function $poly(\cdot,\cdot,\cdot)$ such that (1) for any distribution $\mathcal{D}$ on $\mathcal{X} \times \{0,1\}$ and (2) for any $0<\epsilon<1/2$ and $0<\delta<1/2$, if $\mathcal{A}$ receives as input a sample $\mathcal{Z}$ of size $n\geq poly(1/\epsilon,1/\delta,dim(\mathcal{X}))$, then $\mathcal{A}$ outputs $\hat c \in \mathcal{H}$ such that: $\mathrm{P}_{\mathcal{Z}\sim\mathcal{D}^n}(\mathcal{R}(\hat c)-\inf_{c\in\mathcal{C}}\mathcal{R}(c)\leq\epsilon)\geq 1-\delta$\\
 \textbf{Efficient PAC learning}: If $\mathcal{A}$ runs in time polynomial in $1/\epsilon$ and $1/\delta$, we say that $\mathcal{C}$ is efficiently PAC learnable ($\epsilon$=error parameter, $\delta$=confidence value).\\
 \textbf{VC ineq.} (requires uniform convergence): $\mathcal{R}(\hat c_n^*)-\inf_{c\in \mathcal{C}} \mathcal{R}(c) \leq 2\sup_{c\in \mathcal{C}}|\hat{\mathcal{R}}_n(c) - \mathcal{R}(c)|$ and

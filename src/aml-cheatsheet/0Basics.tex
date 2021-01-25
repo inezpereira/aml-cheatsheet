@@ -1,29 +1,30 @@
 \section{Basics}
-
-Taylor: $f(a)+\tfrac{f'(a)}{1!}(x-a) + \tfrac{f''(a)}{2!}(x-a)^2 + ...$ \\
-General p-norm: $\norm{ x }_p = (\sum_{i=1}^n |x_i|^p)^{1/p}$\\
-Entropy: $H(X)=\E_X[-\log P(X)]$\\
-KL diverg.: $D_\text{KL}(P \parallel Q) = \int_{x\in\mathcal{X}} P(x) \log\left(\frac{P(x)}{Q(x)}\right)$\\
-Power series of exponential: $\exp(x) := \sum_{k = 0}^{\infty} \frac{x^k}{k!}$\\
-Cauchy-Schwarz: $|\E[X,Y]|^2 \leq \E[X^2] \E[Y^2]$ 
+\begin{inparaitem}[\color{black}\textbullet]
+    \item General p-norm: $\norm{ x }_p = (\sum_{i=1}^n |x_i|^p)^{1/p}$\\
+    \item Taylor: $f(a)+\tfrac{f'(a)}{1!}(x-a) + \tfrac{f''(a)}{2!}(x-a)^2 + ...$ \\
+    \item Power series of exp.: $\exp(x) := \sum_{k = 0}^{\infty} \frac{x^k}{k!}$\\
+    \item Entropy: $H(X)=\E_X[-\log P(X)]$\\
+    \item KL diverg.: $D_\text{KL}(P \parallel Q) = \int_{x\in\mathcal{X}} P(x) \log\left(\frac{P(x)}{Q(x)}\right)$\\
+    \item Cauchy-Schwarz: $|\E[X,Y]|^2 \leq \E[X^2] \E[Y^2]$ \\
+    \item $1-z\leq\exp(-z)$\\
+    \item Jensen: $f(X)$ convex: $f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]$
+\end{inparaitem}
 
 \subsection*{Probability / Statistics}
-Gaussian:
-$f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{- \frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}}, \mathcal{N}(x|\mu, \sigma)$\\
-$f(x) = \frac{1}{\sqrt{(2\pi)^d\det\Sigma}} e^{- \frac{1}{2} (x-\mu)^T \Sigma^{-1} (x-\mu)}, \mathcal{N}(x|\mu, \Sigma)$\\
-$\ln(p(x|\mu, \Sigma)) {=} {-}\tfrac{d}{2}\ln(2\pi) {-} \tfrac{\ln|\Sigma|}{2} {-} \tfrac{1}{2}(x{-}\mu)^T\Sigma(x{-}\mu)$ \\
-$X {\sim} \mathcal{N}(\mu,\Sigma)$, $Y{=}A{+}BX \Rightarrow Y{\sim}\mathcal{N}(A{+}B\mu,B\Sigma B^T)$\\
-Binomial: $f(k,n,p) {=} Pr(X=k) {=} \binom nk p^k (1{-}p)^{n{-}k}$\\
-Beta: $p(x|a,b)=\frac{1}{B(a,b)}\cdot x^{a-1}(1-x)^{b-1}$, where: $a,b>0$ and $B(a,b)=\frac{\Gamma (a)\Gamma(b)}{\Gamma (a+b)}$, with: $\Gamma(a)=\int_0^\infty e^{-x}x^{a-1}dx$
-% Condition number: $\kappa(A)=\frac{\sigma_{max}(A)}{\sigma_{min}(A)}$ \\
+\begin{inparaitem}[\color{black}\textbullet]
+    \item Gaussian:
+    $f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{- \frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}}, \mathcal{N}(x|\mu, \sigma)$\\
+    $f(x) = \frac{1}{\sqrt{(2\pi)^d\det\Sigma}} e^{- \frac{1}{2} (x-\mu)^T \Sigma^{-1} (x-\mu)}, \mathcal{N}(x|\mu, \Sigma)$\\
+    % $\ln(p(x|\mu, \Sigma)) {=} {-}\tfrac{d}{2}\ln(2\pi) {-} \tfrac{\ln|\Sigma|}{2} {-} \tfrac{1}{2}(x{-}\mu)^T\Sigma(x{-}\mu)$ \\
+    $X {\sim} \mathcal{N}(\mu,\Sigma)$, $Y{=}A{+}BX \Rightarrow Y{\sim}\mathcal{N}(A{+}B\mu,B\Sigma B^T)$\\
+    \item Binom.: $f(k,n,p) {=} Pr(X=k) {=} \binom nk p^k (1{-}p)^{n{-}k}$
+    % \item \textbf{Beta}: $p(x|a,b)=\frac{1}{B(a,b)}\cdot x^{a-1}(1-x)^{b-1}$, where: $a,b>0$ and $B(a,b)=\frac{\Gamma (a)\Gamma(b)}{\Gamma (a+b)}$, with: $\Gamma(a)=\int_0^\infty e^{-x}x^{a-1}dx$
+% \end{inparaitem}
 
-\subsection*{Jensen's inequality}
-	X R.V. \& $f(X)$ convex: $f(\mathbb{E}[X]) \leq \mathbb{E}[f(X)]$
-
-\subsection*{Moments}
-\begin{inparaitem}[\color{red}\textbullet]
+% \subsection*{Moments}
+% \begin{inparaitem}[\color{black}\textbullet]
 % Variance
-\item $Var[X]=\int_x(x-\mu)^2p(x) dx$ \\
+% \item $Var[X]=\int_x(x-\mu)^2p(x) dx$ \\
 \item $Var[X]=E[(X-E[X])^2]=E[X^2]-E[X]^2$ \\
 \item $Var[X{+}Y]=Var[X]{+}Var[Y]{+}2Cov[X,Y]$ \\
 % Covariance
@@ -33,22 +34,19 @@ Beta: $p(x|a,b)=\frac{1}{B(a,b)}\cdot x^{a-1}(1-x)^{b-1}$, where: $a,b>0$ and $B
 \end{inparaitem}
 
 \subsection*{Calculus}
-\begin{inparaitem}[\color{red}\textbullet]
+\begin{inparaitem}[\color{black}\textbullet]
 	\item Part.: $\int u(x)v'(x) dx = u(x)v(x) - \int v(x)u'(x) dx$\\
-	\item $|x|'=x/|x|$\\
-% 	\item Chain r.: $\frac{f(y)}{g(x)} = \frac{dz}{dx} \Big|_{x=x_0}= \frac{dz}{dy}\Big|_{z=g(x_0)}\cdot \frac{dy}{dx} \Big|_{x=x_0}$ \\
-	%\item $g_x(1) = g_x(0) + g'_x(0) + \int_{0}^{1} g_x''(s)(1-s) ds$ \\
-	%\item $g(\mathbf{w}+\delta) - g(\mathbf{w}) = %\int_{\mathbf{w}}^{\mathbf{w+\delta}} \nabla g(\mathbf{u}) du = (\int_{0}^{1} \nabla g(\mathbf{w}+t\delta)dt) \cdot \delta$\\
-	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{b}^\top \mathbf{x}) = \frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top \mathbf{b}) = \mathbf{b}$
-	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top \mathbf{x}) = 2\mathbf{x}$ \\
-	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top \mathbf{A}\mathbf{x}) = (\mathbf{A}^\top + \mathbf{A})\mathbf{x} \stackrel{\text{\tiny A sym.}}{=} 2\mathbf{A}\mathbf{x}$ \\
-	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{b}^\top \mathbf{A}\mathbf{x}) = \mathbf{A}^\top \mathbf{b}$
-	\item $\frac{\partial}{\partial \mathbf{X}}(\mathbf{c}^\top \mathbf{X} \mathbf{b}) = \mathbf{c}\mathbf{b}^\top$ \\
+	\item $|x|'=x/|x|$ \quad
+	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{b}^\top \mathbf{x}) = \frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top \mathbf{b}) = \mathbf{b}$\\
+	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{b}^\top \mathbf{A}\mathbf{x}) = \mathbf{A}^\top \mathbf{b}$ \quad
+	\item $\frac{\partial}{\partial \mathbf{X}}(\mathbf{c}^\top \mathbf{X} \mathbf{b}) = \mathbf{c}\mathbf{b}^\top$\\
 	\item $\frac{\partial}{\partial \mathbf{X}}(\mathbf{c}^\top \mathbf{X}^\top \mathbf{b}) = \mathbf{b}\mathbf{c}^\top$
+	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top \mathbf{x}) = 2\mathbf{x}$\\
+	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top \mathbf{A}\mathbf{x}) = (\mathbf{A}^\top + \mathbf{A})\mathbf{x} \stackrel{\text{\tiny A sym.}}{=} 2\mathbf{A}\mathbf{x}$ \\
 	\item $\frac{\partial}{\partial \mathbf{x}}(\| \mathbf{x}-\mathbf{b} \|_2) = \frac{\mathbf{x}-\mathbf{b}}{\|\mathbf{x}-\mathbf{b}\|_2}$ \\
-	\item $\frac{\partial}{\partial \mathbf{x}}(\|\mathbf{x}\|^2_2) = \frac{\partial}{\partial \mathbf{x}} (\|\mathbf{x}^\top \mathbf{x}\|_2) = 2\mathbf{x}$\\
+% 	\item $\frac{\partial}{\partial \mathbf{x}}(\|\mathbf{x}\|^2_2) = \frac{\partial}{\partial \mathbf{x}} (\|\mathbf{x}^\top \mathbf{x}\|_2) = 2\mathbf{x}$\\
 % 	\item $\frac{\partial}{\partial \mathbf{X}}(\|\mathbf{X}\|_F^2) = 2\mathbf{X}$ \\
-	\item Trace trick: $x^T A x \stackrel{\text{\tiny inner product}}{=} Tr(x^T A x) \stackrel{\text{\tiny cyclic permut.}}{=} Tr(x x^T A) = Tr(A x x^T)$ \\
+	\item Tr trick: $x^T A x \stackrel{\text{\tiny inner product}}{=} Tr(x^T A x) \stackrel{\text{\tiny cyclic permut.}}{=} Tr(x x^T A) = Tr(A x x^T)$ \\
 	\item $\tfrac{\partial}{\partial A} Tr(AB) {=} B^T$
 	\item $\frac{\partial}{\partial A} log|A| {=} A^{-T}$ \\
 	\item $\sigma(x) = \frac{1}{1+\exp(-x)} \Rightarrow \nabla \sigma(x)=\sigma(x)(1-\sigma(x) $ \\

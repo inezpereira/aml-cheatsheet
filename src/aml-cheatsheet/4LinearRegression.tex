@@ -1,19 +1,6 @@
 % -*- root: Main.tex -*-
 \section{Regression}
 
-\textbf{Maximum likelihood estimator}:
-Consistent,
-possibly biased,
-asymptotically normal ($\sqrt{n}(\theta_{ML} - \theta)$ converges to $\mathcal{N}$),
-asymptotically efficient (minimizes $\E[(\theta_{ML} - \theta)^2]$ (*) asymptotically).
-But not necessarily efficient for finite samples
-(e.g.\ Stein estimator of $\mathcal{N}(\theta, \sigma^2 \b{I})$ for $d\geq 3$ is better).
-
-\textbf{Rao--Cramer bound}: $(*) \geq \frac{1}{I_n(\theta)}$,
-where $I_n(\theta)$ is Fisher information.
-
-
-
 \subsection*{Residual Sum of Squares Estimator}
 Least squares $\b{\beta}$:
 $\hat{\b{\beta}} = (\b{X}^T\b{X})^{-1}\b{X}^T \b{y}$ ($\hat{\beta} \sim \mathcal{N}(\beta,(X^TX)^{-1}\sigma^2)$),

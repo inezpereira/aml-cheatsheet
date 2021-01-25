@@ -2,16 +2,33 @@
 \section{Classification}
 \textbf{Loss-Functions}:
 $y \in \{-1,1\}$, pred. $z \in \{-1,1\}$\\
-Cross-entropy (log loss):\\
-$-[y'\log(z') {+} (1-y')\log(1-z')]$\\ 
-($y'=\tfrac{(1+y)}{2}$ and $z'=\tfrac{(1+z)}{2}$) \\
-Hinge Loss: $max(0, 1-yz)$ \\
-Perceptron Loss: $ max(0, -yz)$ \\
-Logistic loss: $\log(1 + exp(-yz))$ \\
-Square loss: $\tfrac{1}{2}(1-yz)^2$ \\
-Exponential loss: $exp(-yz)$ \\
-Binomial deviance: $1 + exp(-2yz)$ \\
-0/1 Loss: $\mathbb{I}\{sign(z)\neq y\}$
+% CE (log loss):\\
+% $-[y'\log(z') {+} (1-y')\log(1-z')]$\\ 
+(For CE: $y'=(1+y)/2$ and $z'=(1+z)/2$) 
+% Hinge Loss: $max(0, 1-yz)$ \\
+% Perceptron Loss: $ max(0, -yz)$ \\
+% Logistic loss: $\log(1 + exp(-yz))$ \\
+% Square loss: $\tfrac{1}{2}(1-yz)^2$ \\
+% Exponential loss: $exp(-yz)$ \\
+% Binomial deviance: $1 + exp(-2yz)$ \\
+% 0/1 Loss: $\mathbb{I}\{sign(z)\neq y\}$
+
+    \begin{tabular}{ll}
+    \hline
+    \textbf{Name} & Loss function $\mathcal{L}(y,z)$ \\
+    \hline
+    CE (log loss) & $-[y'\log(z') {+} (1-y')\log(1-z')]$\\ 
+    % CE = cross-entropy
+    Hinge & $max(0, 1-yz)$ \\
+    Perceptron & $max(0, -yz)$ \\
+    Logistic & $\log(1 + exp(-yz))$ \\
+    % Square & $\tfrac{1}{2}(1-yz)^2$ \\
+    Exponential & $exp(-yz)$ \\
+    % Binomial deviance & $1 + exp(-2yz)$ \\
+    0/1 & $\mathbb{I}\{sign(z)\neq y\}$
+    \\
+    \hline
+    \end{tabular}
 
 \textbf{Metrics: ROC(FPR/TPR)}:\\
 Accuracy: $\frac{TP+TN}{TP+TN+FP+FN}$, Precision: $\frac{TP}{TP+FP}$\\ Recall/TPR: $\frac{TP}{TP+FN}$, F1 score: $\frac{2TP}{2TP+FP+FN}$\\

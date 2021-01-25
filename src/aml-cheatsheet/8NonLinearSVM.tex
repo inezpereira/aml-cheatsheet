@@ -3,7 +3,7 @@
 % \subsection*{Kernel SVM}
 % \textcolor{red}{TODO: add how to kernelize}
 \textbf{Soft-margin SVM}:
-$\min_{w, w-0} \frac{1}{2} w^T w + C \sum_i \xi_i$\\
+$\min_{w, w_0} \frac{1}{2} w^T w + C \sum_i \xi_i$\\
 s.t. $y_i(w^Tx_i+w_0) \geq 1-\xi_i$, and $\xi_i\geq0$\\
 ($\xi_i=0$ means $x_i$ was \textbf{not} neglected).
 

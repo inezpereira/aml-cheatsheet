@@ -1,0 +1,50 @@
+% -*- root: Main.tex -*-
+
+\section{SVM}
+\textbf{Constrained optimization:}\\
+$\min_{\b{w}} f(\b{w})\ \text{ s.t. } g_i(\b{w}) = 0;\ h_j(\b{w}) \leq 0 \quad\quad (1)$
+
+Define Lagrangian:\\
+$
+\mathcal{L}(\b{w}, \b{\lambda}, \b{\alpha})
+\defeq
+f(\b{w}) + \sum_i \lambda_i g_i(\b{w}) + \sum_j \alpha_j h_j(\b{w})
+$
+
+Solve:
+$
+\frac{\partial \mathcal{L}}{\partial \b{w}} = 0;\ 
+g_i(\b{w}) = 0;\ 
+h_j(\b{w}) \leq 0;\ 
+\alpha_j \geq 0;\ 
+$
+
+If some regularity conditions hold, we have strong duality; e.g. Slater's condition:\\
+$
+\exists \b{w}: g_i(\b{w}) = 0, h_j(\b{w}) < 0
+$\\
+Then instead of the \textit{primal} (1) we can solve the \textit{dual}:
+$
+\max_{\b{\lambda}, \b{\alpha}} \min_{\b{w}} \mathcal{L}(\b{w}, \b{\lambda}, \b{\alpha})
+\ \text{ s.t.}\ \alpha_j \geq 0;
+$
+And we have compl. slackness: $\alpha_j^* h_j(\b{w^*}) = 0$
+(Otherwise, weak duality implies that the dual is a lower bound on our primal.)
+
+\textbf{SVMs}: Primal formulation (intractable if $\phi(\b{x}_i)$ instead of $\b{x}_i$):\\
+$
+\min_{\b{w}, w_0} \frac{\norm{\b{w}}^2}{2}
+ \text{ s.t. }
+y_i(\b{w}^T \b{x}_i + w_0) \geq 1
+$\\
+Dual formulation (solve via quadratic optimization):
+$
+% \Scale[0.9]{
+\max_{\b{\alpha}} \sum_i \alpha_i - \frac{1}{2} \sum_{i,j} \alpha_i \alpha_j y_i y_j \b{x}_i^T \b{x}_j
+\\
+\ \text{ s.t. } 0 \leq \alpha_i;\ \sum_i \alpha_i y_i = 0
+$
+
+We get $\b{w}^* = \sum_i \alpha_i^* y_i \b{x}_i$, where $\alpha_i^* \neq 0$ only for \textit{support vectors}.
+
+% \textbf{Kernelization.} Only need inner product $K(\b{x}_1, \b{x}_2) = \phi(\b{x}_1)^T \phi(\b{x}_2)$.

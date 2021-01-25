@@ -1,0 +1,88 @@
+% -*- root: Main.tex -*-
+\section{Regression}
+
+\textbf{Maximum likelihood estimator}:
+Consistent,
+possibly biased,
+asymptotically normal ($\sqrt{n}(\theta_{ML} - \theta)$ converges to $\mathcal{N}$),
+asymptotically efficient (minimizes $\E[(\theta_{ML} - \theta)^2]$ (*) asymptotically).
+But not necessarily efficient for finite samples
+(e.g.\ Stein estimator of $\mathcal{N}(\theta, \sigma^2 \b{I})$ for $d\geq 3$ is better).
+
+\textbf{Rao--Cramer bound}: $(*) \geq \frac{1}{I_n(\theta)}$,
+where $I_n(\theta)$ is Fisher information.
+
+
+
+\subsection*{Residual Sum of Squares Estimator}
+Least squares $\b{\beta}$:
+$\hat{\b{\beta}} = (\b{X}^T\b{X})^{-1}\b{X}^T \b{y}$ ($\hat{\beta} \sim \mathcal{N}(\beta,(X^TX)^{-1}\sigma^2)$),
+assuming $\b{X}^T\b{X}$ nonsingular.
+Smallest variance among linear \textbf{unbiased} estimates.
+
+\textbf{Bias--variance}:
+$\E_D \E_{Y | X=x}(\hat{f}(x) - Y)^2
+=
+\E_D \big(\hat{f}(x) - \E_D \hat{f}(x) \big)^2
++ \big( \E_D \hat{f}(x) - \E(Y | X=x) \big)^2
++ \E \big(Y - \E(Y | X=x) \big)^2
+=
+variance + bias^2 + noise
+$
+% Derivation with one more step
+% \setlength{\mathindent}{0cm}
+% $
+% \E_D\E_{Y|X=x}\left(\hat{f}(x)-Y\right)^2 = \\
+% \E_D\left(\hat{f}(x) - \E(Y|X=x)\right)^2 + \E\left(Y - \E(Y|X=x)\right)^2\\
+% = \E_D \left(\hat{f}(x) - \E_D(\hat{f}(x))\right)^2 \text{(variance)}\\
+% + \left(\E_D(\hat{f}(x)) - \E(Y|X=x)\right)^2 \text{(bias}^2)\\
+% + \E\left(Y - \E(Y|X=x)\right)^2 \text{(noise)}
+% $\\
+From the GM Theorem, among all linear u-estimators of $\beta$, $\hat \beta$ minimizes the gen. error! What about biased estimators? See below: we $\uparrow$ bias a bit in the hope that the variance $\downarrow$.
+%High bias can cause an algorithm to miss the relevant relations between features and target outputs (underfitting).\\
+%High variance can cause overfitting: modeling the random noise in the training data, rather than the intended outputs.
+
+
+\subsection*{Shrinkage}
+\textbf{Ridge}:
+$\hat{R}(w) = \sum \limits_{i=1}^n (y_i - w^Tx_i)^2 + \lambda ||w||_2^2 \Rightarrow\\$
+$\hat{\b{\beta}} = (\b{X}^T\b{X} + \lambda \b{I})^{-1}\b{X}^T \b{y}$,
+prior $\beta \sim \mathcal{N}(0, \frac{\sigma^2}{\lambda} \b{I})$.
+
+\textbf{Lasso}:
+$w^* = \underset{w}{\operatorname{argmin}} \sum \limits_{i=1}^n (y_i - w^Tx_i)^2 + \lambda ||w||_1 \Rightarrow$\\
+Laplacean prior $p(\beta_i) = \frac{\lambda}{4\sigma^2} \exp(-\abs{\beta_i} \frac{\lambda}{2\sigma^2})$.
+
+% \textbf{Shrinkage}: $Xw^*=\sum_{j=1}^{d} u_j\frac{\sigma_j^2}{\sigma_j^2+\lambda}u_j^Ty$, $X{=}U\Sigma V^T$ 
+
+\subsection*{Gauss-Markov Theorem}
+For any linear estimator $\widetilde{\theta}=c^T\mathbf{y}$ that is unbiased for $a^T\beta$ it holds: $\mathbb{V}(a^T\hat{\beta}) \leq \mathbb{V}(c^T\mathbf{y})$\\
+% Proof: Let $c^T \mathbf{y} = a^T\hat{\beta} + a^T\mathbf{D}\mathbf{y} = a^T((\mathbf{X^TX})^{-1}\mathbf{X}^T + \mathbf{D})\mathbf{y}$ be an unbiased estimator of $a^T \beta$; then it follow $a^T \mathbf{DX}\beta = 0$ which implies $\mathbf{DX} = 0$.\\
+% $\mathbb{V}(c^T \mathbf{y}) = \mathbb{E}[(c^T \mathbf{y})^2]-\mathbb{E}(c^T \mathbf{y})^2 = c^T(\mathbb{E}\mathbf{y}\mathbf{y}^T - \mathbb{E}\mathbf{y}\mathbb{E}\mathbf{y}^T)c = \sigma^2 c^T c $
+% = $\sigma^2 \big( a^T ((\mathbf{X^T X})^{-1}\mathbf{X}^T + \mathbf{D}) (\mathbf{X}(\mathbf{X^T X})^{-1}+\mathbf{D}^T)a \big )$\\
+% = $\sigma^2 \big( a^T (\mathbf{X^T X})^{-1}a +\mathbf{DD^T}a \big )$
+% = $\mathbb{V}(a^T\hat{\beta}) + a^T \mathbf{DD^T}a \geq \mathbb{V}(a^T\hat{\beta})$ (note: $\mathbf{DD^T}$ is PSD)
+
+
+
+% \subsection*{Gradient Descent}
+% 1. Start arbitrary $w_o \in \mathbb{R}$\\
+% 2. For $i$ do $w_{t+1} = w_t - \eta_t \nabla \hat{R}(w_t)$
+
+%\subsection*{Curse of Dimensionality}
+%To obtain a reliable estimate at a given regularity, the required number of samples grows exponentially with the dimension of the sample space.
+
+% \subsection*{Expected Error}
+% For generalization, minimize the expected error
+% $R(w) = \int P(x,y) (y-w^Tx)^2 \partial x \partial y$\\
+% $= \mathbb{E}_{x,y}[(y-w^Tx)^2]$
+
+
+% \subsection*{Ridge Parametric to nonparametric}
+% Ansatz: $w=\sum_i \alpha_i x$\\
+% $w^* = \underset{w}{\operatorname{argmin}} \sum_i (w^Tx_i-y_i)^2 + \lambda ||w||_2^2$ = \\
+% ${\operatorname{argmin}}_{\alpha_{1:n}} \sum_{i=1}^n (\sum_{j=1}^n \alpha_j x_j^T x_i - y_i)^2 + \lambda \sum_i \sum_j \alpha_i \alpha_j (x_i^T x_j)$\\
+% $= {\operatorname{argmin}}_{\alpha_{1:n}} \sum_{i=1}^n (\alpha^T K_i - y_i)^2 + \lambda \alpha^T K \alpha$\\
+% $= {\operatorname{argmin}}_{\alpha} ||\alpha^T K -y||_2^2 + \lambda \alpha^T K \alpha$\\
+% Closed form: $\alpha^* = (K+\lambda I)^{-1} y$\\
+% Prediction: $y^*= w^{*T} x = \sum_{i=1}^n \alpha_i^* k(x_i,x)$

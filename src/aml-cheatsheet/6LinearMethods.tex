@@ -1,4 +1,4 @@
-\section{Linear methods}
+\section{Linear classification}
 \begin{tabular}{lll}
 \textbf{Prob. gen.}     & $p(x, y)$ & +outlier det. \\
 \textbf{Prob. discr.} & $p(y \mid x)$ & +deg. of belief \\
@@ -7,26 +7,6 @@
 % Polynomial & $(\b{x}^T\b{x'} + 1)^p$, where $p \in \N$ \\
 % Gaussian (Radial Basis F.) & $\exp(-\norm{\b{x} - \b{x'}}_2^2 / h^2)$
 \end{tabular}
-
-Least squares $\b{\beta}$:
-$\hat{\b{\beta}} = (\b{X}^T\b{X})^{-1}\b{X}^T \b{y}$,
-assuming $\b{X}^T\b{X}$ nonsingular.
-Smallest variance among linear unbiased estimates.
-\textbf{Bias--variance}:
-$\E_D \E_{Y | X=x}(\hat{f}(x) - Y)^2
-=
-\E_D \big(\hat{f}(x) - \E_D \hat{f}(x) \big)^2
-+ \big( \E_D \hat{f}(x) - \E(Y | X=x) \big)^2
-+ \E \big(Y - \E(Y | X=x) \big)^2
-=
-variance + bias^2 + noise
-$
-
-\textbf{Ridge}:
-$\hat{\b{\beta}} = (\b{X}^T\b{X} + \lambda \b{I})^{-1}\b{X}^T \b{y}$,
-prior $\beta \sim \mathcal{N}(0, \frac{\sigma^2}{\lambda} \b{I})$.
-\textbf{Lasso}: Laplacean prior
-$p(\beta_i) = \frac{\lambda}{4\sigma^2} \exp(-\abs{\beta_i} \frac{\lambda}{2\sigma^2})$.
 
 
 \subsection*{Linear Discriminant Analysis (prob. gen.)}

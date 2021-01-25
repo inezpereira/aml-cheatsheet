@@ -4,7 +4,8 @@ Taylor: $f(a)+\tfrac{f'(a)}{1!}(x-a) + \tfrac{f''(a)}{2!}(x-a)^2 + ...$ \\
 General p-norm: $\norm{ x }_p = (\sum_{i=1}^n |x_i|^p)^{1/p}$\\
 Entropy: $H(X)=\E_X[-\log P(X)]$\\
 KL diverg.: $D_\text{KL}(P \parallel Q) = \int_{x\in\mathcal{X}} P(x) \log\left(\frac{P(x)}{Q(x)}\right)$\\
-Power series of exponential: $\exp(x) := \sum_{k = 0}^{\infty} \frac{x^k}{k!}$
+Power series of exponential: $\exp(x) := \sum_{k = 0}^{\infty} \frac{x^k}{k!}$\\
+Cauchy-Schwarz: $|\E[X,Y]|^2 \leq \E[X^2] \E[Y^2]$ 
 
 \subsection*{Probability / Statistics}
 Gaussian:
@@ -47,7 +48,7 @@ Beta: $p(x|a,b)=\frac{1}{B(a,b)}\cdot x^{a-1}(1-x)^{b-1}$, where: $a,b>0$ and $B
 	\item $\frac{\partial}{\partial \mathbf{x}}(\| \mathbf{x}-\mathbf{b} \|_2) = \frac{\mathbf{x}-\mathbf{b}}{\|\mathbf{x}-\mathbf{b}\|_2}$ \\
 	\item $\frac{\partial}{\partial \mathbf{x}}(\|\mathbf{x}\|^2_2) = \frac{\partial}{\partial \mathbf{x}} (\|\mathbf{x}^\top \mathbf{x}\|_2) = 2\mathbf{x}$\\
 % 	\item $\frac{\partial}{\partial \mathbf{X}}(\|\mathbf{X}\|_F^2) = 2\mathbf{X}$ \\
-	\item $x^T A x \stackrel{\text{\tiny inner product}}{=} Tr(x^T A x) \stackrel{\text{\tiny cyclic permut.}}{=} Tr(x x^T A) = Tr(A x x^T)$ \\
+	\item Trace trick: $x^T A x \stackrel{\text{\tiny inner product}}{=} Tr(x^T A x) \stackrel{\text{\tiny cyclic permut.}}{=} Tr(x x^T A) = Tr(A x x^T)$ \\
 	\item $\tfrac{\partial}{\partial A} Tr(AB) {=} B^T$
 	\item $\frac{\partial}{\partial A} log|A| {=} A^{-T}$ \\
 	\item $\sigma(x) = \frac{1}{1+\exp(-x)} \Rightarrow \nabla \sigma(x)=\sigma(x)(1-\sigma(x) $ \\

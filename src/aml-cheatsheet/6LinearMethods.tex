@@ -1,0 +1,72 @@
+\section{Linear methods}
+\begin{tabular}{lll}
+\textbf{Prob. gen.}     & $p(x, y)$ & +outlier det. \\
+\textbf{Prob. discr.} & $p(y \mid x)$ & +deg. of belief \\
+\textbf{Discrim.}       & $f : X \rightarrow Y$ & +easiest
+% Linear & $\b{x}^T \b{x}'$ \\
+% Polynomial & $(\b{x}^T\b{x'} + 1)^p$, where $p \in \N$ \\
+% Gaussian (Radial Basis F.) & $\exp(-\norm{\b{x} - \b{x'}}_2^2 / h^2)$
+\end{tabular}
+
+Least squares $\b{\beta}$:
+$\hat{\b{\beta}} = (\b{X}^T\b{X})^{-1}\b{X}^T \b{y}$,
+assuming $\b{X}^T\b{X}$ nonsingular.
+Smallest variance among linear unbiased estimates.
+\textbf{Bias--variance}:
+$\E_D \E_{Y | X=x}(\hat{f}(x) - Y)^2
+=
+\E_D \big(\hat{f}(x) - \E_D \hat{f}(x) \big)^2
++ \big( \E_D \hat{f}(x) - \E(Y | X=x) \big)^2
++ \E \big(Y - \E(Y | X=x) \big)^2
+=
+variance + bias^2 + noise
+$
+
+\textbf{Ridge}:
+$\hat{\b{\beta}} = (\b{X}^T\b{X} + \lambda \b{I})^{-1}\b{X}^T \b{y}$,
+prior $\beta \sim \mathcal{N}(0, \frac{\sigma^2}{\lambda} \b{I})$.
+\textbf{Lasso}: Laplacean prior
+$p(\beta_i) = \frac{\lambda}{4\sigma^2} \exp(-\abs{\beta_i} \frac{\lambda}{2\sigma^2})$.
+
+
+\subsection*{Linear Discriminant Analysis (prob. gen.)}
+
+Two-class clf. Assume that
+$p(X \mid Y = 0) = \mathcal{N}(\mu_0, \Sigma)$ and
+$p(X \mid Y = 1) = \mathcal{N}(\mu_1, \Sigma)$ (same covariance!).
+We get $p(y \mid \b{x}) = \sigma(\b{w}^T \b{x} + w_0)$.
+For $\Sigma_0 \neq \Sigma_1$ we get \textit{Quadratic DA}:
+$p(y \mid \b{x}) = \sigma(\b{x}^T\b{W}\b{x} + \b{x}^T\b{w} + w_0)$.
+
+\subsection*{Fisher's Linear Discriminant (discr.)}
+$$
+\max_{\b{w}}
+    \frac{
+        (\b{w}^T(\b{\bar{x}}_0 - \b{\bar{x}}_1)^2)
+    }{
+        \widetilde{\Var}(\b{w}^T C_0) + \widetilde{\Var}(\b{w}^T C_1)
+    }
+$$
+
+Where $C_i$ are the $\b{x}$ of class $i$, $\widetilde{\Var}$ is $\Var$ without dividing by \# samples.
+Solution: $\b{w} \propto S_{\b{w}}^{-1}(\b{\hat{x}_0} - \b{\hat{x}_1})$,
+where $S_{\b{w}} \defeq \widetilde{\Cov}(C_0) + \widetilde{\Cov}(C_1)$.
+After projecting the data to $\b{w}^T\b{x}$, fit a mixture of Gaussians.
+
+\subsection*{Perceptron}
+
+Classifier $c(\b{x}) = \sign{\b{w}^T\b{x} + w_0}$.
+Loss $\mathcal{L}(w) = \sum_{i \text{ misclassified}} -y_i \b{w}^T\b{x}_i$.
+Train using (S)GD. Converges if data is linearly separable,
+learning rate $\eta(k) \geq 0$, $\sum_k\eta(k)\rightarrow\infty$ and
+$\big(\sum \eta^2(k)\big)
+/
+\big(\sum \eta(k)\big)^2
+\rightarrow 0$.
+
+\textbf{Gradient Descent} (NL = neg. log likelihood)\\
+$\b{w}^{(k+1)} \leftarrow \b{w}^{(k)} - \eta(k)\nabla NL(w^{(k)})$
+
+\textbf{Newton's Method} (+ better updates, + no learn. rate, - more comp. exp.)\\
+$\b{w}^{(k+1)} \leftarrow \b{w}^{(k)} - H_{L}^{-1}(\b{w}^{(k)}) \nabla L(\b{w}^{(k)})$
+

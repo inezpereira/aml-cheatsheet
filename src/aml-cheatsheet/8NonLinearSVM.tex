@@ -1,0 +1,27 @@
+% -*- root: Main.tex -*-
+\section{Non-linear SVM}
+% \subsection*{Kernel SVM}
+% \textcolor{red}{TODO: add how to kernelize}
+\textbf{Soft-margin SVM}:
+$\min_{w, w-0} \frac{1}{2} w^T w + C \sum_i \xi_i$\\
+s.t. $y_i(w^Tx_i+w_0) \geq 1-\xi_i$, and $\xi_i\geq0$\\
+($\xi_i=0$ means $x_i$ was \textbf{not} neglected).
+
+\textbf{Structural SVM}\\
+$
+\min_{\b{w}, \b{\xi}} \frac{\norm{\b{w}}^2}{2}
++ \frac{C}{n} \sum_{i=1}^n \xi_i
+ \text{ s.t. } $
+ 
+$
+\b{w}^T \b{\Psi}(x_i, y_i) \geq \Delta(y_i, y') + \b{w}^T \b{\Psi}(x_i, y') -\xi_i;
+\ \xi_i \geq 0
+$
+%
+where $y'$ is any class other than $y_i$,
+$\b{\Psi} \colon \mathcal{X} \times \mathcal{Y} \rightarrow \R^d$ is a \textit{joint-feature map},
+$\Delta$ is the class dissimilarity function,
+$\b{w}^T\b{\Psi}(x, y)$ is the compatibility score (\textbf{prediction}: argmax over $y$ of this).
+For optimal params, empirical risk is $\leq \frac{1}{n} \sum_{i=1}^n \xi^*_i$.
+
+\textbf{Training}: In each iteration, add for each $(x_i, y_i)$ the class $y'$ with the ''most violated'' constraint.

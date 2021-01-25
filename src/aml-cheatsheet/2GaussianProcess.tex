@@ -52,9 +52,11 @@ Set of hyperparameters $\theta$ determine parameters $C_n$. Gradient descent: $\
 % 	$k(x,y) = p(k_1(x,y)), \, p(\cdot)$ {\tiny\text{polynomial with pos. coeff.}}\\   
 % 	$k(x,y)=k_1(x,y)/ \sqrt{(k_1(x,x) k_1(y,y)}$\\
 	Gaussian (rbf): $k(x,y) = \exp( -\tfrac{||x-y||^2}{h^2})$ {\tiny inf.dim.}\\
-	Sigmoid (tanh): $k(x,y) = \tanh(k\cdot x^Ty - b)$ {\tiny\text{not valid for $\forall k,b$}} \\
+	Sigmoid (tanh): $k(x,y) = \tanh(k\cdot x^Ty - b)$ {\tiny\text{not valid for $\forall k,b$}} \hl{sigmoig kernel seems to have something wrong!} \\
 	Polynomial: $k(x,y) {=} (x^Ty {+} c)^d$,$d\in N$,$c\geq0$ \\
 	Periodic: $k(x,y) = \sigma ^2 exp(\frac{2\sin ^2 (\pi |x-y|/p)}{\ell ^2})$
+	
+    \textbf{Mercer's theorem}: if $K(x,y)=K(y,x)$ and $\int\int f(x)K(x,y)f(x)dx dy\geq0$, then $K$ is a kernel. Valid $\forall f$ where $\int f^2(x)dx<\infty$.
 
 % \subsubsection*{Polynomial kernel}
 % $k_1 = (x^Ty)^m$ represents monomial of deg m \\

@@ -1,0 +1,32 @@
+% -*- root: Main.tex -*-
+\section{Ensemble methods}
+
+\textbf{Bagging}:
+% \textbf{for} $b=1$ to $B$ \textbf{do}:\\
+% 1. $Z^{*b}=$ b-th bootstrap sample from Z\\
+% 2. Construct classifier $c_b$ based on $Z^{*b}$\\
+ensemble class $\hat{c}_B(x)=sgn(\sum_{i=1}^{B} c_i(x))$ or $\hat{c}_B(x)=1/B\sum_{i=1}^{B} c_i(x))$\\
+
+\textbf{Theorem:} Denote by $b$ single model trained on bootstrap set $Z'$ and by $\bar{b}^{(M)}$ a bag of $M$ models. Assuming range of $y$ finite and that bagged models are indep. (not true because bootstrap sets aren't indep.), then there is a sufficiently large $M$ s.t.:
+$$
+\mathop{\mathbb{E}}_{\mathclap{\substack{X|Y \\ Z, Z'_1, \ldots, Z'_M}}}\;
+\big[ (y - \bar{b}^{(M)}(x))^2 \big]
+\leq
+\mathop{\mathbb{E}}_{\mathclap{\substack{X|Y \\ Z,Z'}}}\;
+\big[ (y - b(x))^2 \big]
+$$
+
+\textbf{Random Forest}: train ensemble of trees via bagging. During training of tree, at each splitting step, choose $m$ features at random and only do splitting with 1 (this $\downarrow$ correlation between base trees.)
+
+\textbf{Boosting}: Train weak learners sequentially on all data, but $\uparrow$ weight of misclass. samples.
+
+\textbf{Adaboost}: statistical learning (forward additive stepwise modeling) with exponential loss, trains max-margin (quality), self-avg and interpolating ($\downarrow$ overfitting) classifiers.\\
+\textbf{Initialize}: $\bat{b}^{(o)}\leftarrow 0$, $w_i = 1/n$, for $t\leq M$ do:\\
+1. $b^{(t)}=\argmin_b \mathcal{L}^w(b)=\sum_{i\leq n}w_i\mathbbm{1}\{b(x_i)\neq y_i\}$\\
+2. [Evaluate]: $err_t = \mathcal{L}^w(b^{(t)})$ $\epsilon_b$\\
+3. $\bar b^{(t)}=\bar b^{(t-1)}+\alpha_t b^{(t)}$, with: $\alpha_t=\log(\frac{1}{err_t}-1)$\\
+4. [Reweight]: $w_i = w_i \exp(\alpha_t \mathbbm{1}\{b^{(t)}\}\not = y_i)$\\
+\textbf{Return} $\bar b^{(M)}(x) = \text{sign} \left ( \sum_{t\leq M} \alpha_t b^{(t)}(x) \right )$\\
+
+
+

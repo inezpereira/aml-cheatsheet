@@ -20,6 +20,7 @@
 \usepackage{soul} % for highlighting
 \usepackage{amsmath} % for cases in equations
 \usepackage{mathtools} % for underbrace
+\usepackage{amsfonts} % for indicator function
 
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
@@ -93,11 +94,12 @@ leftmargin=0mm,rightmargin=0mm,skipbelow=0mm,skipabove=0mm,
 	\input{5DesignLinearDiscriminant.tex}
 	\input{6SupportVectorMachine.tex}
 	\input{7NonLinearSVM.tex}
-	\input{8Ensemble.tex}
+
 %	\input{8Unsupervised.tex}
 	\input{9MixtureModel.tex}
 %	\input{10TimeSeries.tex}
 \newpage
+	\input{src/aml-cheatsheet/9Ensemble}
     \input{src/aml-cheatsheet/11NeuralNet}
     \input{src/aml-cheatsheet/12ModelSelection}
     \input{src/aml-cheatsheet/12Clustering}

@@ -10,8 +10,8 @@ One can show: $\E_{X,X_1,...,X_n}[\hat{\mathcal{R}}_n(\hat c(X))]=\mathcal{R}(\h
 \textbf{Efficient PAC learning}: If $\mathcal{A}$ runs in time polynomial in $1/\epsilon$ and $1/\delta$, we say that $\mathcal{C}$ is efficiently PAC learnable ($\epsilon$=error parameter, $\delta$=confidence value).\\
 \textbf{VC ineq.} (requires uniform convergence): $\mathcal{R}(\hat c_n^*)-\inf_{c\in \mathcal{C}} \mathcal{R}(c) \leq 2\sup_{c\in \mathcal{C}}|\hat{\mathcal{R}}_n(c) - \mathcal{R}(c)|$ and
 $\mathrm{P}\{\mathcal{R}(\hat c_n^*)-\inf_{c\in \mathcal{C}} \mathcal{R}(c)>\epsilon\} \leq \mathrm{P}\{sup_{c\in \mathcal{C}}|\hat{\mathcal{R}}_n(c) - \mathcal{R}(c)|>\epsilon/2\}$\\
-If $\mathcal{C}$ is finite: $\leq 2|\mathcal{C}| exp(-2n\epsilon ^2)$\\
-Uncountable $\mathcal{H}$: $\leq 9n^{VC_\mathcal{C}}\exp(-n\epsilon^2/32)$
+If $\mathcal{C}$ is finite: $P\{\cdot\} \leq 2|\mathcal{C}| exp(-2n\epsilon ^2)$\\
+Uncountable $\mathcal{H}$: $P\{\cdot\} \leq 9n^{VC_\mathcal{C}}\exp(-n\epsilon^2/32)$
 
 
 

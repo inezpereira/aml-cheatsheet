@@ -3,7 +3,7 @@
 \textbf{k-means objective}: $\underset{\mathbf{S}} {\operatorname{arg\,min}}  \sum_{i=1}^{k} \sum_{\mathbf x \in S_i} \left\| \mathbf x - \boldsymbol\mu_i \right\|^2$
 
 \textbf{Gaussian mixture model}: get $\theta$ such that\\
-$\argp(\mathcal{X}|\pi_{1,...,_k},\theta_{1,...k})=\prod_{x\in\mathcal{X}}\sum_{c\leq k}\pi_c p(x|\theta_c)$\\
+$\max P(\mathcal{X}|\pi_{1,...,_k},\theta_{1,...k})=\prod_{x\in\mathcal{X}}\sum_{c\leq k}\pi_c p(x|\theta_c)$
 
 % Log-Likelihood: $L(\mathcal{X} | \pi, \theta) = \sum_{x\in \mathcal{X}}
 % \log \sum_{c \leq k} \pi_c p(x|\theta_c)$
@@ -21,7 +21,7 @@ $\argp(\mathcal{X}|\pi_{1,...,_k},\theta_{1,...k})=\prod_{x\in\mathcal{X}}\sum_{
 	\State \textbf{M-Step}: $\theta^{(j+1)}\in \argmax_\theta Q(\theta; \theta^{(j)})$\\
 	$\pi_c=\frac{1}{|\mathcal{X}|}\sum_{x\in\mathcal{X}}\gamma_{xc}$\\
 	$\mu_c=\frac{\sum_{x\in\mathcal{X}}\gamma_{xc}X}{\sum_{x\in\mathcal{X}}\gamma_{xc}}$\\
-	$\sigma^2_c=\frac{\sum_{x\in\mathcal{X}}\gamma_{xc}(x-\mu_c)^2)}{\sum_{x\in\mathcal{C}}\gamma_{xc}}$
+	$\sigma^2_c=\frac{\sum_{x\in\mathcal{X}}\gamma_{xc}(x-\mu_c)^2)}{\sum_{x\in\mathcal{C}}\gamma_{xc}}$ ($\partial Q/\partial \sigma_c$!)
 \end{algorithmic}
 
 % \subsection*{Expectation Maximization}

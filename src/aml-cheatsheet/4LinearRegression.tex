@@ -8,11 +8,11 @@ assuming $\b{X}^T\b{X}$ nonsingular.
 Smallest variance among linear \textbf{unbiased} estimates.
 
 \textbf{Bias--variance}:
-$\E_D \E_{Y | X=x}(\hat{f}(x) - Y)^2
+$\E_D \E_{Y | X=x}[(\hat{f}(x) - Y)^2]
 =
-\E_D \big(\hat{f}(x) - \E_D \hat{f}(x) \big)^2
+\E_D [(\hat{f}(x) - \E_D \hat{f}(x))^2]
 + \big( \E_D \hat{f}(x) - \E(Y | X=x) \big)^2
-+ \E \big(Y - \E(Y | X=x) \big)^2
++ \E [(Y - \E[Y | X=x])^2]
 =
 variance + bias^2 + noise
 $

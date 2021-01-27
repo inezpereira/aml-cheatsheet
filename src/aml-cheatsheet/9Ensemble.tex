@@ -29,7 +29,7 @@ $$
 \textbf{Adaboost}: statistical learning (forward additive stepwise modeling) with exponential loss, trains max-margin (quality), self-avg and interpolating ($\downarrow$ overfitting) classifiers.\\
 \textbf{Initialize}: $\bat{b}^{(o)}\leftarrow 0$, $w_i = 1/n$, for $t\leq M$ do:\\
 1. $b^{(t)}=\argmin_b \mathcal{L}^w(b)=\sum_{i\leq n}w_i\mathbbm{1}\{b(x_i)\neq y_i\}$\\
-2. [Evaluate]: $err_t = \mathcal{L}^w(b^{(t)})$ $\epsilon_b$\\
+2. [Evaluate]: $err_t = \mathcal{L}^w(b^{(t)})$\\
 3. $\bar b^{(t)}=\bar b^{(t-1)}+\alpha_t b^{(t)}$, with: $\alpha_t=\log(\frac{1}{err_t}-1)$\\
 4. [Reweight]: $w_i = w_i \exp(\alpha_t \mathbbm{1}\{b^{(t)}\}\not = y_i)$\\
 \textbf{Return} $\bar b^{(M)}(x) = \text{sign} \left ( \sum_{t\leq M} \alpha_t b^{(t)}(x) \right )$\\

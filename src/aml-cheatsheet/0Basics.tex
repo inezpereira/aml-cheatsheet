@@ -1,6 +1,7 @@
 \section{Basics}
 \begin{inparaitem}[\color{black}\textbullet]
     \item General p-norm: $\norm{ x }_p = (\sum_{i=1}^n |x_i|^p)^{1/p}$\\
+    % \item $Proj(\b{x})=(\b{x}\cdot\b{v})/(\b{v}\cdot\b{v})\cdot \b{v}$\\
     \item Taylor: $f(a)+\tfrac{f'(a)}{1!}(x-a) + \tfrac{f''(a)}{2!}(x-a)^2 + ...$ \\
     \item Power series of exp.: $\exp(x) := \sum_{k = 0}^{\infty} \frac{x^k}{k!}$\\
     \item Entropy: $H(X)=\E_X[-\log P(X)]$\\
@@ -13,9 +14,9 @@
 \subsection*{Probability / Statistics}
 \begin{inparaitem}[\color{black}\textbullet]
     \item Gaussian:
-    $f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} e^{- \frac{1}{2} \frac{(x-\mu)^2}{\sigma^2}}, \mathcal{N}(x|\mu, \sigma)$\\
-    $f(x) = \frac{1}{\sqrt{(2\pi)^d\det\Sigma}} e^{- \frac{1}{2} (x-\mu)^T \Sigma^{-1} (x-\mu)}, \mathcal{N}(x|\mu, \Sigma)$\\
-    % $\ln(p(x|\mu, \Sigma)) {=} {-}\tfrac{d}{2}\ln(2\pi) {-} \tfrac{\ln|\Sigma|}{2} {-} \tfrac{1}{2}(x{-}\mu)^T\Sigma(x{-}\mu)$ \\
+    $f(x) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp(- \frac{1}{2} \frac{(x-\mu)^2}{\sigma^2})$\\ %, \mathcal{N}(x|\mu, \sigma)
+    $f(x) = \frac{1}{\sqrt{(2\pi)^d\det\Sigma}} \exp(- \frac{1}{2} (x-\mu)^T \Sigma^{-1} (x-\mu))$\\ % \mathcal{N}(x|\mu, \Sigma)
+    $\ln(p(x|\mu, \Sigma)) {=} {-}\tfrac{d}{2}\ln(2\pi) {-} \tfrac{\ln|\Sigma|}{2} {-} \tfrac{1}{2}(x{-}\mu)^T\Sigma^{-1}(x{-}\mu)$ \\
     $X {\sim} \mathcal{N}(\mu,\Sigma)$, $Y{=}A{+}BX \Rightarrow Y{\sim}\mathcal{N}(A{+}B\mu,B\Sigma B^T)$\\
     \item Binom.: $f(k,n,p) {=} Pr(X=k) {=} \binom nk p^k (1{-}p)^{n{-}k}$
     % \item \textbf{Beta}: $p(x|a,b)=\frac{1}{B(a,b)}\cdot x^{a-1}(1-x)^{b-1}$, where: $a,b>0$ and $B(a,b)=\frac{\Gamma (a)\Gamma(b)}{\Gamma (a+b)}$, with: $\Gamma(a)=\int_0^\infty e^{-x}x^{a-1}dx$
@@ -43,12 +44,12 @@
 	\item $\frac{\partial}{\partial \mathbf{X}}(\mathbf{c}^\top \mathbf{X}^\top \mathbf{b}) = \mathbf{b}\mathbf{c}^\top$
 	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top \mathbf{x}) = 2\mathbf{x}$\\
 	\item $\frac{\partial}{\partial \mathbf{x}}(\mathbf{x}^\top \mathbf{A}\mathbf{x}) = (\mathbf{A}^\top + \mathbf{A})\mathbf{x} \stackrel{\text{\tiny A sym.}}{=} 2\mathbf{A}\mathbf{x}$ \\
-	\item $\frac{\partial}{\partial \mathbf{x}}(\| \mathbf{x}-\mathbf{b} \|_2) = \frac{\mathbf{x}-\mathbf{b}}{\|\mathbf{x}-\mathbf{b}\|_2}$ \\
+	\item $\frac{\partial}{\partial \mathbf{x}}(\| \mathbf{x}-\mathbf{b} \|_2) = \frac{\mathbf{x}-\mathbf{b}}{\|\mathbf{x}-\mathbf{b}\|_2}$
 % 	\item $\frac{\partial}{\partial \mathbf{x}}(\|\mathbf{x}\|^2_2) = \frac{\partial}{\partial \mathbf{x}} (\|\mathbf{x}^\top \mathbf{x}\|_2) = 2\mathbf{x}$\\
 % 	\item $\frac{\partial}{\partial \mathbf{X}}(\|\mathbf{X}\|_F^2) = 2\mathbf{X}$ \\
-	\item Tr trick: $x^T A x \stackrel{\text{\tiny inner product}}{=} Tr(x^T A x) \stackrel{\text{\tiny cyclic permut.}}{=} Tr(x x^T A) = Tr(A x x^T)$ \\
-	\item $\tfrac{\partial}{\partial A} Tr(AB) {=} B^T$
-	\item $\frac{\partial}{\partial A} log|A| {=} A^{-T}$ \\
+	\item $\tfrac{\partial}{\partial \mathbf{A}} Tr(\mathbf{AB}) {=} \mathbf{B}^\top$
+	\item $\frac{\partial}{\partial \mathbf{A}} log|\mathbf{A}| {=} \mathbf{A}^{-\top}$
+	\item Tr trick: $x^T A x \stackrel{\text{\tiny inner product}}{=} Tr(x^T A x) \stackrel{\text{\tiny cyclic permut.}}{=} Tr(x x^T A) = Tr(A x x^T)$\\
 	\item $\sigma(x) = \frac{1}{1+\exp(-x)} \Rightarrow \nabla \sigma(x)=\sigma(x)(1-\sigma(x) $ \\
 % 	\item $\nabla \text{sigmoid}(x) = \text{sigmoid}(x)(1-\text{sigmoid}(x))$ \\
 	\item $tanhx {=} \frac{sinhx}{coshx} {=} \frac{e^{x}-e^{-x}}{e^{x} + e^{x}}$
